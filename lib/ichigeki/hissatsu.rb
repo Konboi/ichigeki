@@ -14,7 +14,7 @@ module Ichigeki
         file: '',
         dialog_message: "Do you really execute %s",
         is_compilation: 1,
-        script: '',
+        script: $0,
       }.merge(init_properties)
 
       @exec_date        = init_properties[:exec_date]
