@@ -2,7 +2,7 @@ module Ichigeki
   class Hissatsu
     require 'time'
     attr_reader :exec_date, :confirm_dialog, :log_file_postfix,
-      :script, :in_compilation, :dialog_message, :is_compilation
+      :script, :in_compilation, :dialog_message
 
     attr_accessor :is_running
 
@@ -13,15 +13,15 @@ module Ichigeki
         log_file_postfix: '.log',
         file: '',
         dialog_message: "Do you really execute %s",
-        is_compilation: 1,
+        in_compilation: 1,
         script: $0,
       }.merge(init_properties)
 
       @exec_date        = init_properties[:exec_date]
-      @is_compilation   = init_properties[:is_compilation]
       @confirm_dialog   = init_properties[:confirm_dialog]
-      @script           = init_properties[:script]
+      @in_compilation   = init_properties[:in_compilation]
       @log_file_postfix = init_properties[:log_file_postfix]
+      @script           = init_properties[:script]
       @dialog_message   = init_properties[:dialog_message]
     end
 
@@ -52,7 +52,7 @@ module Ichigeki
 
     def exiting(msg = '')
       msg = msg + "\n"
-      if (self.is_compilation)
+      if (self.in_compilation)
         puts msg
         exit 1
       end
