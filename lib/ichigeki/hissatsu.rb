@@ -52,13 +52,17 @@ module Ichigeki
 
       self.is_running = 1
 
+      # todo
+      $stdout = log_fh
+      $stderr = log_fh
+
       done
     end
 
     private
 
     def tee(input, output)
-      output.puts input
+      #todo
     end
 
     def exiting(msg = '')
