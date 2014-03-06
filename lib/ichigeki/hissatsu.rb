@@ -10,7 +10,7 @@ module Ichigeki
     def initialize(init_properties = {})
       init_properties = {
         exec_date: Time.now.strftime("%Y-%m-%d"),
-        confirm_dialog: 1,
+        confirm_dialog: true,
         log_file_postfix: '.log',
         file: '',
         dialog_message: "Do you really execute %s",
@@ -19,7 +19,7 @@ module Ichigeki
         is_running: nil,
       }.merge(init_properties)
 
-      @exec_date        = init_properties[:exec_date]
+      @exec_date        = Time.strptime(init_properties[:exec_date],"%Y-%m-%d")
       @confirm_dialog   = init_properties[:confirm_dialog]
       @in_compilation   = init_properties[:in_compilation]
       @log_file_postfix = init_properties[:log_file_postfix]
@@ -30,7 +30,8 @@ module Ichigeki
 
     def execute
       now   = Time.now;
-      today = now.strftime("%Y-%m-%d")
+      today = Time.strptime(now.strftime("%Y-%m-%d"), "%Y-%m-%d")
+
       exiting("exec_date: #{exec_date.strftime('%Y-%m-%d')} is not today") unless exec_date == today
 
       exiting(sprintf("Can't execue! Execution log file [%s] already exists!", log_file)) if File.exists?(log_file)
