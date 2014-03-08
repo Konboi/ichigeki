@@ -12,32 +12,31 @@ module Ichigeki
         exec_date: Time.now.strftime("%Y-%m-%d"),
         confirm_dialog: true,
         log_file_postfix: '.log',
-        file: '',
         dialog_message: "Do you really execute %s",
         in_compilation: 1,
         script: $0,
         is_running: nil,
       }.merge(init_properties)
 
-      @exec_date        = Time.strptime(init_properties[:exec_date],"%Y-%m-%d")
+      @exec_date        = init_properties[:exec_date]
       @confirm_dialog   = init_properties[:confirm_dialog]
       @in_compilation   = init_properties[:in_compilation]
       @log_file_postfix = init_properties[:log_file_postfix]
       @script           = init_properties[:script]
       @dialog_message   = init_properties[:dialog_message]
-      @is_running      = init_properties[:is_running]
+      @is_running       = init_properties[:is_running]
     end
 
     def execute
       now   = Time.now;
-      today = Time.strptime(now.strftime("%Y-%m-%d"), "%Y-%m-%d")
+      today = now.strftime("%Y-%m-%d")
 
-      exiting("exec_date: #{exec_date.strftime('%Y-%m-%d')} is not today") unless exec_date == today
+      exiting("exec_date: #{exec_date} is not today") unless exec_date == today
 
       exiting(sprintf("Can't execue! Execution log file [%s] already exists!", log_file)) if File.exists?(log_file)
 
       if confirm_dialog
-        printf(dialog_message + ' [y/n] [n]'  , script.to_s)
+        printf(dialog_message + ' [y/n] [n] ', script.to_s)
         answer = gets.chomp
         exiting 'canceled.' unless answer == 'y'
       end
