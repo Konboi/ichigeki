@@ -1,5 +1,5 @@
 # Ichigeki
-[![Build Status ](https://api.travis-ci.org/Konboi/ichigeki.png?branch=master)](https://travis-ci.org/konboi/ichigeki)
+[![Build Status ](https://api.travis-ci.org/Konboi/ichigeki.png?branch=master)](https://travis-ci.org/Konboi/ichigeki)
 
 This is [Script::Ichigeki](https://github.com/Songmu/p5-Script-Ichigeki) ruby version.
 
