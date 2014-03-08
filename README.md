@@ -6,29 +6,50 @@ This is [Script::Ichigeki](https://github.com/Songmu/p5-Script-Ichigeki) ruby ve
 
 * ユーザーのtime zoneによってexec date のdateを変更する
 * ログファイルに保存しているものを標準出力にも表示させる
+* テスト
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'ichigeki'
+gem 'ichigeki'
 
 And then execute:
 
-    $ bundle
+$ bundle
 
 Or install it yourself as:
 
-    $ gem install ichigeki
+$ gem install ichigeki
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+# sample.rb
+require 'ichigeki'
+
+Ichigeki.hissatsu(
+  dialog_message: "殺っちゃう？？",
+  log_file_postfix: '.ichigeki',
+  exec_date: "2014-03-08"
+)
+
+puts 'ichigeki: グハッ'
+
+```
+
+```
+bundle exec ruby sample.rb
+```
+
+```
+less .sample.rb.ichigeki
+```
 
 ## Contributing
 
 1. Fork it ( http://github.com/<my-github-username>/ichigeki/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
+    3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+    5. Create new Pull Request
