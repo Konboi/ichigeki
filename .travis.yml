@@ -1,0 +1,6 @@
+language: ruby
+otp_release:
+  - R16B
+  before_install:
+    - git clone https://github.com/Konboi/ichigeki.git
+      - cd ichigeki && rspec

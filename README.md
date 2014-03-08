@@ -1,12 +1,7 @@
 # Ichigeki
+[![Build Status ](https://travis-ci.org/konboi/ichigeki.png)](https://travis-ci.org/konboi/ichigeki)
 
 This is [Script::Ichigeki](https://github.com/Songmu/p5-Script-Ichigeki) ruby version.
-
-## TODO
-
-* ユーザーのtime zoneによってexec date のdateを変更する
-* ログファイルに保存しているものを標準出力にも表示させる
-* テスト
 
 ## Installation
 
