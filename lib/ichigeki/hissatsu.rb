@@ -1,4 +1,5 @@
 require 'time'
+require 'stringio'
 
 module Ichigeki
   class Hissatsu
@@ -52,17 +53,50 @@ module Ichigeki
 
       self.is_running = 1
 
-      # todo
-      $stdout = log_fh
-      $stderr = log_fh
+      $stdout = std_out
+      $stderr = std_err
 
       done
     end
 
     private
 
-    def tee(input, output)
-      #todo
+    def twin_out(f)
+      out = Object.new
+      out.instance_eval{@ofile=f}
+      class <<out
+        def write(str)
+          STDOUT.write(str)
+          @ofile.write(str)
+        end
+      end
+
+      return out
+    end
+
+    def twin_err(f)
+      err = Object.new
+      err.instance_eval{@ofile=f}
+      class <<err
+        def write(str)
+          STDERR.write(str)
+          @ofile.write(str)
+        end
+      end
+
+      return err
+    end
+
+    def std_out
+      twin_out(log_fh)
+    end
+
+    def std_err
+      twin_err(log_fh)
+    end
+
+    def log_fh
+      open(log_file, "a")
     end
 
     def exiting(msg = '')
@@ -80,10 +114,6 @@ module Ichigeki
 
     def log(msg)
       log_fh.puts msg
-    end
-
-    def log_fh
-      open(log_file, "a")
     end
 
     def done
