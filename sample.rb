@@ -1,10 +1,11 @@
 require 'ichigeki'
 
 Ichigeki.hissatsu(
-  confirm_dialog: false,
-  log_file_postfix: '.unko'
+  dialog_message: "殺っちゃう？？",
+  log_file_postfix: '.ichigeki',
+  exec_date: "2014-03-08"
 )
 
-puts 'ichigeki: 2度目はない'
+puts 'ichigeki: グハッ'
 
 
