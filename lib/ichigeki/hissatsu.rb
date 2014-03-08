@@ -108,8 +108,7 @@ module Ichigeki
     end
 
     def log_file
-      dir =  File.expand_path(File.dirname(script))
-      "#{dir.to_s}/.#{script.to_s}#{log_file_postfix}"
+      "#{File.dirname(script)}/.#{script.to_s}#{log_file_postfix}"
     end
 
     def log(msg)
