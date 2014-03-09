@@ -5,17 +5,17 @@ require 'pathname'
 require 'fileutils'
 
 describe Ichigeki, "hissatsu" do
-  sampleRbs = %w(sample.rb sample_require_hissatsu.rb)
+  sample_rbs = %w(sample.rb sample_require_hissatsu.rb)
   
   before :each do
-    sampleRbs.each do |rb|
+    sample_rbs.each do |rb|
       File.delete("./spec/#{rb}.log") if File.exist?("./spec/#{rb}.log")
     end
   end
 
   context "can execute test script" do
     it "First time can doing" do
-      sampleRbs.each do |rb|
+      sample_rbs.each do |rb|
         stdout = `ruby ./spec/#{rb}`
         expect(stdout).to eq("ichigekiiiii\n")
       end
@@ -24,7 +24,7 @@ describe Ichigeki, "hissatsu" do
 
   context "can't execute twice this script" do
     it "First time can doing" do
-      sampleRbs.each do |rb|
+      sample_rbs.each do |rb|
         `ruby ./spec/#{rb}`
         stdout = `ruby ./spec/#{rb}`
         expect(stdout).to eq("Can\'t execue! Execution log file [./spec/../spec/#{rb}.log] already exists!\n")
